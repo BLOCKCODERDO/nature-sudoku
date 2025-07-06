@@ -175,19 +175,15 @@ function checkMove(r, c, v, cell) {
     setTimeout(() => cell.classList.remove('bounce'), 300);
     return;
   }
-
   cell.textContent = v;
   cell.firstChild.remove();
   board[r][c] = +v;
   cell.classList.add('bounce');
   setTimeout(() => cell.classList.remove('bounce'), 300);
-
   const solved = board.flat().every((n, idx) =>
     n === solution[Math.floor(idx / 9)][idx % 9]
   );
-  if (solved) showCelebrationPopup();
-}
-
+  if (solved) showMessage('🎉 Solved!');
 }
 
 function showHint() {
@@ -215,55 +211,3 @@ function showMessage(msg) {
     messageEl.classList.remove('show');
   }, 3000);
 }
-// 🎉 Confetti animation
-function fireConfetti() {
-  const count = 150;
-  const defaults = { origin: { y: 0.7 } };
-  for (let i = 0; i < count; i++) {
-    confetti(Object.assign({}, defaults, {
-      particleCount: 1,
-      spread: 360,
-      startVelocity: Math.random() * 30 + 10,
-      ticks: 200,
-      origin: { x: Math.random(), y: Math.random() * 0.4 + 0.2 }
-    }));
-  }
-}
-
-// 🔊 Sound trigger
-function playCheerSound() {
-  const cheerSound = document.getElementById("cheerSound");
-  if (cheerSound) {
-    cheerSound.play().catch(e => console.warn('Audio failed:', e));
-  }
-}
-
-// 🎊 Celebration Popup
-function showCelebrationPopup() {
-  playCheerSound();
-  fireConfetti();
-
-  const overlay = document.createElement('div');
-  overlay.id = 'celebrationOverlay';
-  overlay.innerHTML = `
-    <div id="celebrationPopup">
-      <h2>🎉 Hooray! You did it!</h2>
-      <p>⏱ Time: ${timerEl.textContent}<br>❌ Mistakes: ${mistakes}</p>
-      <div class="popup-buttons">
-        <button id="newPuzzleBtn2">New Puzzle</button>
-        <button id="celebrateBtn">Close</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-
-  document.getElementById('newPuzzleBtn2').onclick = () => {
-    overlay.remove();
-    init(); // start a new game
-  };
-  document.getElementById('celebrateBtn').onclick = () => {
-    overlay.remove();
-    showMessage("🧠 Ready for another challenge?");
-  };
-}
-
