@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nature Sudoku 🌿</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- Loading Splash Screen -->
+  <div id="splash">
+    <div class="splash-content">
+      <div class="ripple"></div>
+      <h1 class="splash-title">🌱 Nature Sudoku</h1>
+    </div>
+  </div>
+
+  <!-- Game Header -->
+  <div class="header">
+    <h1>🌱 Nature Sudoku</h1>
+    <div class="controls top-controls">
+      <button id="shareBtn">🔗 Share URL</button>
+      <button class="readonly" disabled>⏱️ <span id="timer">00:00</span></button>
+      <button class="readonly" disabled>❌ <span id="mistakes">Mistakes: 0</span></button>
+    </div>
+  </div>
+
+  <!-- Game Board -->
+  <main>
+    <div id="board"></div>
+  </main>
+
+  <!-- Bottom Controls -->
+  <div class="controls bottom-controls">
+    <button id="newPuzzleBtn">➕ New Puzzle</button>
+    <button id="hintBtn">🔍 Hint</button>
+    <button id="solveBtn">🤖 Auto‑Solve</button>
+    <select id="themeSelect">
+      <option value="">🌈 Default</option>
+      <option value="jungle">🌿 Jungle</option>
+      <option value="forest">🌳 Forest</option>
+      <option value="beach">🏖️ Beach</option>
+    </select>
+  </div>
+
+  <!-- Popup -->
+  <div id="message" class="popup"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
